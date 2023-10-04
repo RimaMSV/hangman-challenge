@@ -15,14 +15,12 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div class="game-modal">
-      <div class="content">
-        <img src="./images/lost.gif" alt="gif" />
-        <h4 class="lose-msg">Game Over!</h4>
-        <p>The correct word was : <strong>sandy</strong></p>
-        <button class="play-again">Play Again</button>
-      </div>
-    </div>
+    <dialog opan id="modal" class="modal new-game">
+      <img src="./images/lost.gif" alt="gif" />
+      <h4 class="lose-msg">Game Over!</h4>
+      <p>The correct word was : <strong>sandy</strong></p>
+      <button class="play-again">Play Again</button>
+    </dialog>
 
     <div class="container">
       <div class="hangman-box">
@@ -30,19 +28,13 @@
         <h1>Hangman Game</h1>
       </div>
       <div class="game-content">
-        <div class="option-box">
-          <button>easy</button>
-          <button>normal</button>
-          <button>hard</button>
-        </div>
-
         <div class="game-box">
           <ul class="word-display">
-            <li class="letter guessed">s</li>
+            <!-- <li class="letter guessed">s</li>
             <li class="letter"></li>
             <li class="letter"></li>
             <li class="letter"></li>
-            <li class="letter"></li>
+            <li class="letter"></li> -->
           </ul>
 
           <h4 class="hint-text">
@@ -56,36 +48,10 @@
           </h4>
         </div>
 
-        <div class="keyboard">
-          <button class="letter-btn">a</button>
-          <button class="letter-btn">b</button>
-          <button class="letter-btn">c</button>
-          <button class="letter-btn">d</button>
-          <button class="letter-btn">e</button>
-          <button class="letter-btn">f</button>
-          <button class="letter-btn">g</button>
-          <button class="letter-btn">h</button>
-          <button class="letter-btn">i</button>
-          <button class="letter-btn">j</button>
-          <button class="letter-btn">k</button>
-          <button class="letter-btn">l</button>
-          <button class="letter-btn">m</button>
-          <button class="letter-btn">n</button>
-          <button class="letter-btn">o</button>
-          <button class="letter-btn">p</button>
-          <button class="letter-btn">q</button>
-          <button class="letter-btn">r</button>
-          <button class="letter-btn">s</button>
-          <button class="letter-btn">t</button>
-          <button class="letter-btn">u</button>
-          <button class="letter-btn">v</button>
-          <button class="letter-btn">w</button>
-          <button class="letter-btn">x</button>
-          <button class="letter-btn">y</button>
-          <button class="letter-btn">z</button>
-        </div>
+        <div class="keyboard"></div>
       </div>
     </div>
+    <script src="./word-list.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
