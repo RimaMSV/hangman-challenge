@@ -11,7 +11,7 @@ html {
   /* 'Bona Nova'/ "Dongle" font-family */
 }
 body {
-  background-color: rgb(69, 194, 154);
+  background-color: #403d58;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,16 +21,16 @@ body {
 
 .container {
   width: 85rem;
-  background-color: #fff;
+  background-color: #f2efea;
   padding: 5rem 2rem;
   border-radius: 1rem;
-  border: 5px solid rgb(64, 81, 182);
+  border: 8px solid #dbd56e;
   display: flex;
   align-items: center;
   /* justify-content: center; */
   gap: 6rem;
-  box-shadow: rgba(60, 64, 67, 0.678) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.288) 0px 2px 6px 2px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .hangman-box > img {
@@ -89,7 +89,7 @@ body {
 }
 .game-box .guesses-text > strong {
   font-size: 1.6rem;
-  color: #fe5152;
+  color: #fb6137;
 }
 .game-box .guesses-text {
   font-size: 1.5rem;
@@ -112,14 +112,17 @@ body {
   outline: none;
   border: none;
   cursor: pointer;
-  background-color: rgb(61, 173, 138);
-  color: #fff;
+  background-color: #66d7d1;
+  color: #333;
   transition: all 0.1s;
 }
 
 .keyboard button:hover {
-  background-color: rgb(69, 194, 154);
+  background-color: #7e7b9c;
+  color: #f1faee;
   transform: translateY(1px);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .disabled {
@@ -141,7 +144,7 @@ body {
 } */
 
 .modal {
-  background-color: #fff;
+  background-color: #535069;
   max-width: 45rem;
   width: 100%;
   text-align: center;
@@ -151,7 +154,7 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border: 5px solid rgb(69, 194, 154);
+  border: 5px solid #dbd56e;
 }
 
 .modal::backdrop {
@@ -169,35 +172,39 @@ body {
 .modal > p {
   font-size: 1.8rem;
   margin-bottom: 3rem;
+  color: #f1faee;
 }
 .modal > p strong {
-  color: rgb(61, 173, 138);
+  color: #a3e7e3;
   text-transform: uppercase;
 }
 .modal > button {
   font-size: 1.5rem;
   font-weight: 600;
   padding: 1.2rem 1.8rem;
-  border: 1px solid transparent;
+  border: 3px solid transparent;
   border-radius: 0.5rem;
   cursor: pointer;
-  background-color: rgb(61, 173, 138);
-  color: #fff;
+  background-color: #e36b4b;
+  color: #403d58;
 
-  transition: all 0.2s;
+  transition: all 0.3s;
 }
 .modal > button:hover {
-  background-color: rgb(69, 194, 154);
-  color: #fff;
-  box-shadow: rgba(91, 177, 102, 0.5) 0px 2px 5px -1px,
+  background-color: #66d7d1;
+  color: #403d58;
+  transform: translateY(3px);
+  border: 3px solid #f2efea;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .win-msg {
-  color: #37ce88;
+  color: #dbd56e;
 }
 .lose-msg {
-  color: #fe5152;
+  color: #fc7753;
 }
 
 /* __ Responsive __ */

@@ -65,13 +65,14 @@ let checkLetter = (e) => {
       e.classList.add("disabled");
     }
   }
-  hangmanImageEl.src = `images/hangman-${wrongGuessCount}.svg`;
-  guessChancesEl.innerText = `${wrongGuessCount} / ${maxGuesse}`;
-
   if (!foundLetterFlag) {
     foundLetterFlag = false;
     wrongGuessCount++;
+    hangmanImageEl.src = `images/hangman-${wrongGuessCount}.svg`;
+    guessChancesEl.innerText = `${wrongGuessCount} / ${maxGuesse}`;
+    console.log(wrongGuessCount);
   }
+  // initializing the game condition
   const initGame = function () {
     modalEl.close();
     wrongGuessCount = 0;
@@ -79,8 +80,8 @@ let checkLetter = (e) => {
     chosenWordHint;
     chosenWordArr = [];
     correctLetters = [];
-
     keyboardEl.innerHTML = "";
+
     createKeyboardLetter();
     keyboardEl.classList.remove("disabled");
     hangmanImageEl.src = `images/hangman-${wrongGuessCount}.svg`;
@@ -90,8 +91,10 @@ let checkLetter = (e) => {
     console.log(chosenWord); // for Test
     renderWord();
   };
-  if (wrongGuessCount > maxGuesse) {
+  //Win or Lose conditin
+  if (wrongGuessCount == maxGuesse) {
     modalEl.showModal();
+    keyboardEl.classList.add("disabled");
 
     resultMsg.innerHTML = "";
     resultDesc.innerHTML = "";
@@ -101,7 +104,7 @@ let checkLetter = (e) => {
 
     playAgainBtnEl.addEventListener("click", initGame);
   } else if (correctLetters.length === chosenWord.length) {
-    // console.log("you win");
+    // console.log("you win");//test
     keyboardEl.classList.add("disabled");
     modalEl.showModal();
 
@@ -122,12 +125,10 @@ const keyboardClick = (e) => {
     checkLetter(e.target);
   }
 };
-
 keyboardEl.addEventListener("click", keyboardClick);
-
 createKeyboardLetter();
 generateRandomWord(wordList);
 renderWord();
 
-console.log(chosenWord); //for Test
-console.log(chosenWordArr); // for Test
+//console.log(chosenWord); //for Test
+//console.log(chosenWordArr); // for Test

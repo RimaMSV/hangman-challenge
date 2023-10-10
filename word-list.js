@@ -41,7 +41,7 @@ const wordList = [
   },
   {
     word: "artist",
-    hint: "sSomeone who paints, draws, or makes sculptures:",
+    hint: "Someone who paints, draws, or makes sculptures:",
   },
   {
     word: "Seashell",
