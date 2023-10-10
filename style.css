@@ -122,9 +122,9 @@ body {
   transform: translateY(1px);
 }
 
-.true-letter {
-  background-color: #ccc;
-  color: #222;
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }
 /* __ Modal __ */
 
@@ -170,8 +170,8 @@ body {
   font-size: 1.8rem;
   margin-bottom: 3rem;
 }
-.modal > p > strong {
-  color: #39d78d;
+.modal > p strong {
+  color: rgb(61, 173, 138);
   text-transform: uppercase;
 }
 .modal > button {

@@ -1,18 +1,24 @@
 "use strict";
 
 const displayWordEl = document.querySelector(".word-display");
+const hangmanImageEl = document.querySelector(".hangman-box > img");
 const guessesChanceEl = document.querySelector(".guesses-text");
 const hintEl = document.querySelector(".hint-text");
 const guessChancesEl = document.querySelector(".guesses-text > strong");
 const keyboardEl = document.querySelector(".keyboard");
+
 const modalEl = document.querySelector("#modal");
+const resultImg = document.querySelector("#modal > img");
+const resultMsg = document.querySelector("#modal > h4");
+const resultDesc = document.querySelector("#modal > p");
 const playAgainBtnEl = document.querySelector(".play-again");
 
-const maxGuesse = 6;
+let maxGuesse = 6;
 let wrongGuessCount = 0;
 let chosenWord;
 let chosenWordHint;
 let chosenWordArr = [];
+let correctLetters = [];
 
 const createKeyboardLetter = () => {
   let Characters = Array.from({ length: 26 }, (_, index) =>
@@ -45,31 +51,77 @@ const renderWord = () => {
   hintEl.innerHTML = `Hint :<strong>${chosenWordHint}</strong>`;
 };
 
+let checkLetter = (e) => {
+  let foundLetterFlag = false;
+  for (let i = 0; i < chosenWord.length; i++) {
+    if (chosenWord[i].toUpperCase() === e.innerText) {
+      foundLetterFlag = true;
+      correctLetters.push(e.innerText);
+      console.log(correctLetters);
+      chosenWordArr[
+        i
+      ] = `<li class="letter guessed">${e.innerText.toUpperCase()}</li>`;
+
+      e.classList.add("disabled");
+    }
+  }
+  hangmanImageEl.src = `images/hangman-${wrongGuessCount}.svg`;
+  guessChancesEl.innerText = `${wrongGuessCount} / ${maxGuesse}`;
+
+  if (!foundLetterFlag) {
+    foundLetterFlag = false;
+    wrongGuessCount++;
+  }
+  const initGame = function () {
+    modalEl.close();
+    wrongGuessCount = 0;
+    chosenWord;
+    chosenWordHint;
+    chosenWordArr = [];
+    correctLetters = [];
+
+    keyboardEl.innerHTML = "";
+    createKeyboardLetter();
+    keyboardEl.classList.remove("disabled");
+    hangmanImageEl.src = `images/hangman-${wrongGuessCount}.svg`;
+    guessChancesEl.innerText = `${wrongGuessCount} / ${maxGuesse}`;
+
+    generateRandomWord(wordList);
+    console.log(chosenWord); // for Test
+    renderWord();
+  };
+  if (wrongGuessCount > maxGuesse) {
+    modalEl.showModal();
+
+    resultMsg.innerHTML = "";
+    resultDesc.innerHTML = "";
+    resultImg.src = `images/lost.gif`;
+    resultMsg.innerHTML = `<h4 class="lose-msg">Game Over!</h4>`;
+    resultDesc.innerHTML = `<p>The correct word was : <strong>${chosenWord}</strong></p>`;
+
+    playAgainBtnEl.addEventListener("click", initGame);
+  } else if (correctLetters.length === chosenWord.length) {
+    // console.log("you win");
+    keyboardEl.classList.add("disabled");
+    modalEl.showModal();
+
+    resultMsg.innerHTML = "";
+    resultDesc.innerHTML = "";
+    resultImg.src = `images/victory.gif`;
+    resultMsg.innerHTML = `<h4 class="win-msg">Congrats!</h4>`;
+    resultDesc.innerHTML = `<p>You found the word : <strong>${chosenWord}</strong></p>`;
+
+    playAgainBtnEl.addEventListener("click", initGame);
+  }
+  renderWord();
+};
+
 const keyboardClick = (e) => {
   if (e.target.tagName.toUpperCase() == "BUTTON") {
     console.log(e.target.innerText); //for Test
-    checkLetter(e.target.innerText);
+    checkLetter(e.target);
   }
 };
-
-function checkLetter(letter) {
-  let found = false;
-  for (let i = 0; i < chosenWord.length; i++) {
-    if (chosenWord[i].toUpperCase() === letter) {
-      found = true;
-      chosenWordArr[
-        i
-      ] = `<li class="letter guessed">${letter.toUpperCase()}</li>`;
-    }
-  }
-  if (!found) {
-    found = false;
-    wrongGuessCount++;
-
-    guessChancesEl.innerText = `${wrongGuessCount} / ${maxGuesse}`;
-  }
-  renderWord();
-}
 
 keyboardEl.addEventListener("click", keyboardClick);
 
@@ -77,5 +129,5 @@ createKeyboardLetter();
 generateRandomWord(wordList);
 renderWord();
 
-console.log(chosenWord);
-console.log(chosenWordArr);
+console.log(chosenWord); //for Test
+console.log(chosenWordArr); // for Test
